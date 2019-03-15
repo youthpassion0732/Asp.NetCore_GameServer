@@ -1,0 +1,17 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.ResultViewModel
+@{
+    ViewData["Title"] = "Quiz Result Page";
+}
+
+@if (Model.IsPass)
+{
+    <p>Congrats! You have passed the quiz.</p>
+}
+else
+{
+    <p>Unfortuntaley! You did not pass the quiz.</p>
+}
+
+<div>
+    <p>You have obtained @Model.ObtainedScore marks out of @Model.TotalScore</p>
+</div>

@@ -1,0 +1,97 @@
+﻿@model DomainEntities.Question
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Question</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="TitleInEnglish" class="control-label"></label>
+                <input asp-for="TitleInEnglish" class="form-control" />
+                <span asp-validation-for="TitleInEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TitleInFrench" class="control-label"></label>
+                <input asp-for="TitleInFrench" class="form-control" />
+                <span asp-validation-for="TitleInFrench" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TitleInGerman" class="control-label"></label>
+                <input asp-for="TitleInGerman" class="form-control" />
+                <span asp-validation-for="TitleInGerman" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TitleInSpain" class="control-label"></label>
+                <input asp-for="TitleInSpain" class="form-control" />
+                <span asp-validation-for="TitleInSpain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TitleInItalian" class="control-label"></label>
+                <input asp-for="TitleInItalian" class="form-control" />
+                <span asp-validation-for="TitleInItalian" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo1" class="control-label"></label>
+                <input asp-for="Photo1" class="form-control" />
+                <span asp-validation-for="Photo1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo2" class="control-label"></label>
+                <input asp-for="Photo2" class="form-control" />
+                <span asp-validation-for="Photo2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo3" class="control-label"></label>
+                <input asp-for="Photo3" class="form-control" />
+                <span asp-validation-for="Photo3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo4" class="control-label"></label>
+                <input asp-for="Photo4" class="form-control" />
+                <span asp-validation-for="Photo4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Photo5" class="control-label"></label>
+                <input asp-for="Photo5" class="form-control" />
+                <span asp-validation-for="Photo5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoName" class="control-label"></label>
+                <input asp-for="VideoName" class="form-control" />
+                <span asp-validation-for="VideoName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MaxTimeAllowed" class="control-label"></label>
+                <input asp-for="MaxTimeAllowed" class="form-control" />
+                <span asp-validation-for="MaxTimeAllowed" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ScoreToWin" class="control-label"></label>
+                <input asp-for="ScoreToWin" class="form-control" />
+                <span asp-validation-for="ScoreToWin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="QuizCategoryId" class="control-label"></label>
+                <select asp-for="QuizCategoryId" class="form-control" asp-items="ViewBag.QuizCategoryId"></select>
+                <span asp-validation-for="QuizCategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

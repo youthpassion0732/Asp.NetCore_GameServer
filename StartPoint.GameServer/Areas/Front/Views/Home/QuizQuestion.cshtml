@@ -1,0 +1,64 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.QuizQuestionViewModel
+@{
+    ViewData["Title"] = "Quiz Question Page";
+}
+
+<div class="container" id="question">
+    <form method="post" asp-controller="Home" asp-action="QuizQuestion" id="questionForm">
+        <input type="hidden" asp-for="CategoryId" value="@Model.CategoryId" />
+        <input type="hidden" asp-for="QuestionNumber" value="@Model.QuestionNumber" />
+        <input type="hidden" asp-for="CurrentScore" value="@Model.CurrentScore" />
+        <input type="hidden" asp-for="TotalQuestions" value="@Model.TotalQuestions" />
+        <input type="hidden" asp-for="SessionId" value="@Model.SessionId" />
+        <input type="hidden" asp-for="QuestionId" value="@Model.QuestionId" />
+        <input type="hidden" asp-for="CurrentQuestionScore" value="@Model.CurrentQuestionScore" />
+        <input type="hidden" asp-for="TotalScore" value="@Model.TotalScore" />
+        <div class="d-flex justify-content-between mb-2">
+            <span id="countdown">12 : 30</span>
+            @if(Model.IsLastQuestion)
+            {
+                <span>Last Question</span>
+            }
+            <span>Question @Model.QuestionNumber of @Model.TotalQuestions</span>
+        </div>
+        <div class="d-flex flex-wrap front">
+            <div class="form-group col-12 question">
+                <label>@Model.QuestionNumber. @Model.Question.TitleInEnglish</label>
+                @foreach (var answer in Model.Answers)
+                {
+                    <div class="coll flex-fill">
+                        <input type="radio" asp-for="SelectedAnswerId" value="@answer.Id" required /> @answer.AnswerInEnglish
+                    </div>
+                }
+            </div>
+            <div class="d-flex justify-content-end" style="width: 100%;">
+                <button type="submit" class="btn btn-outline-success justify-self-end">Next</button>
+            </div>
+        </div>
+    </form>
+</div>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script>
+    $(document).ready(function () {
+        var timer2 = "0:@Model.AllowedTime";
+
+        var interval = setInterval(function () {
+            var timer = timer2.split(':');
+            //by parsing integer, I avoid all extra string processing
+            var minutes = parseInt(timer[0], 10);
+            var seconds = parseInt(timer[1], 10);
+            --seconds;
+            minutes = (seconds < 0) ? --minutes : minutes;
+            seconds = (seconds < 0) ? 59 : seconds;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+            $('#countdown').html(minutes + ':' + seconds);
+            if (minutes < 0) clearInterval(interval);
+            //check if both minutes and seconds are 0
+            if ((seconds <= 0) && (minutes <= 0)) {
+                clearInterval(interval);
+                $('#questionForm').submit();
+            }
+            timer2 = minutes + ':' + seconds;
+        }, 1000);
+    });
+</script>

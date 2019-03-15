@@ -1,0 +1,110 @@
+﻿@model DomainEntities.Game
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Game</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="GameType" class="control-label"></label>
+                <input asp-for="GameType" class="form-control" />
+                <span asp-validation-for="GameType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameName" class="control-label"></label>
+                <input asp-for="GameName" class="form-control" />
+                <span asp-validation-for="GameName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameDescription" class="control-label"></label>
+                <input asp-for="GameDescription" class="form-control" />
+                <span asp-validation-for="GameDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LoginRule" class="control-label"></label>
+                <input asp-for="LoginRule" class="form-control" />
+                <span asp-validation-for="LoginRule" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LoginWithFacbook" /> @Html.DisplayNameFor(model => model.LoginWithFacbook)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LoginWithGoogle" /> @Html.DisplayNameFor(model => model.LoginWithGoogle)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="LoginWithTwitter" /> @Html.DisplayNameFor(model => model.LoginWithTwitter)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Logo" class="control-label"></label>
+                <input asp-for="Logo" class="form-control" />
+                <span asp-validation-for="Logo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Banner" class="control-label"></label>
+                <input asp-for="Banner" class="form-control" />
+                <span asp-validation-for="Banner" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CSSSkin" class="control-label"></label>
+                <input asp-for="CSSSkin" class="form-control" />
+                <span asp-validation-for="CSSSkin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrivacyAndGameConditions" class="control-label"></label>
+                <input asp-for="PrivacyAndGameConditions" class="form-control" />
+                <span asp-validation-for="PrivacyAndGameConditions" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EnableAnonymous" /> @Html.DisplayNameFor(model => model.EnableAnonymous)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="GameSlotType" class="control-label"></label>
+                <input asp-for="GameSlotType" class="form-control" />
+                <span asp-validation-for="GameSlotType" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="EnableTimer" /> @Html.DisplayNameFor(model => model.EnableTimer)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="TimerMaxPerQuestion" class="control-label"></label>
+                <input asp-for="TimerMaxPerQuestion" class="form-control" />
+                <span asp-validation-for="TimerMaxPerQuestion" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DisplayScore" /> @Html.DisplayNameFor(model => model.DisplayScore)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

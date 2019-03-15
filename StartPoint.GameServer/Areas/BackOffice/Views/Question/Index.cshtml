@@ -1,0 +1,120 @@
+﻿@model IEnumerable<DomainEntities.Question>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Questions</h1>
+
+<p>
+    <a asp-action="Create" asp-route-id="@ViewBag.QuizCategory">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TitleInEnglish)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.TitleInFrench)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TitleInGerman)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TitleInSpain)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TitleInItalian)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo1)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo2)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo3)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo4)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Photo5)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VideoName)
+                </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.MaxTimeAllowed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ScoreToWin)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.QuizCategory)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TitleInEnglish)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.TitleInFrench)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TitleInGerman)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TitleInSpain)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TitleInItalian)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo2)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo3)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo4)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Photo5)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VideoName)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.MaxTimeAllowed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ScoreToWin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.QuizCategory.TitleInEnglish)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    <a asp-action="Create" asp-controller="Answer" asp-route-id="@item.Id" asp-route-gameId="@item.QuizCategoryId">Answers</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-action="Index" asp-controller="Game">Back to Game</a>
+</div>

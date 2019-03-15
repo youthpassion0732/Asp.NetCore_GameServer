@@ -1,0 +1,48 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Slot Game Page";
+    string slotMachineWidth = string.Format("{0}%", 100 / Model.GameModel.GameSlotsCount);
+}
+
+<link href="~/lib/jQuery-slot-machine/styles/style.css" rel="stylesheet" />
+<link href="~/lib/jQuery-slot-machine/dist/jquery.slotmachine.css" rel="stylesheet" />
+
+<!-- slot machine example -->
+<p>@Model.GameModel.GameDescription</p>
+<input id="slotMachinesCount" type="hidden" value="@Model.GameModel.GameSlotsCount" />
+<div id="casino" style="padding-top:40px;">
+    <div class="content">
+        <h1>@Model.GameModel.GameName</h1>
+        <div>
+            @{
+                for (int i = 1; i <= Model.GameModel.GameSlotsCount; i++)
+                {
+                    <div id="@("casino" + i)" class="slotMachine" style="width:@slotMachineWidth; margin-left:@( i == 1 ? "-65px" : "0px");">
+                        @foreach (var icon in Model.GameModel.SlotIcons)
+                        {
+                            <div class="@("d-flex justify-content-center align-items-center slot slot" + icon.Id)">
+                                @if (!string.IsNullOrEmpty(icon.IconName))
+                                {
+                                    <img id="@icon.Value" src="~/Resources/Icon/@icon.IconName" class="img-fluid" />
+                                }
+                                else
+                                { 
+                                    <label id="@icon.Value">@icon.Value</label>
+                                }
+                            </div>
+                        }
+                    </div>
+                }
+            }
+            <div class="btn-group btn-group-justified" role="group">
+                <button id="casinoShuffle" type="button" class="btn btn-primary btn-lg">Shuffle!</button>
+                <button id="casinoStop" type="button" class="btn btn-primary btn-lg">Stop!</button>
+            </div>
+        </div>
+    </div>
+</div>
+<form id="slotMachineForm" method="post" asp-controller="Home" asp-action="SlotGameWin">
+    <input id="slotMachineOptions" name="SlotMachineOptions" type="hidden" value="" />
+    <input id="gameId" name="GameId" type="hidden" value="@Model.GameModel.GameId" />
+</form>

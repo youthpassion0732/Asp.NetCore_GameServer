@@ -1,0 +1,59 @@
+﻿@model StartPoint.GameServer.Areas.BackOffice.Models.AnswerViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h4>Answer</h4>
+<hr />
+
+<partial name="_AnswersListPartial" model="Model" />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            @Html.HiddenFor(model => model.QuestionId)
+            @Html.HiddenFor(model => model.Answers)
+            @Html.HiddenFor(model => model.QuizCategoryId)
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="AnswerInEnglish" class="control-label"></label>
+                <input asp-for="AnswerInEnglish" class="form-control" />
+                <span asp-validation-for="AnswerInEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerInFrench" class="control-label"></label>
+                <input asp-for="AnswerInFrench" class="form-control" />
+                <span asp-validation-for="AnswerInFrench" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerInGerman" class="control-label"></label>
+                <input asp-for="AnswerInGerman" class="form-control" />
+                <span asp-validation-for="AnswerInGerman" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerInSpain" class="control-label"></label>
+                <input asp-for="AnswerInSpain" class="form-control" />
+                <span asp-validation-for="AnswerInSpain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AnswerInItalian" class="control-label"></label>
+                <input asp-for="AnswerInItalian" class="form-control" />
+                <span asp-validation-for="AnswerInItalian" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsTrue" /> @Html.DisplayNameFor(model => model.IsTrue)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+        </div>
+</div>
+
+<div>
+    <a asp-action="index" asp-controller="Question" asp-route-id="@Model.QuestionId" asp-route-quizCategoryId="@Model.QuizCategoryId">Back to Questions</a>
+</div>
+

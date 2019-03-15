@@ -1,0 +1,120 @@
+﻿@model DomainEntities.Icon
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Icon</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Value" class="control-label"></label>
+                <input asp-for="Value" class="form-control" />
+                <span asp-validation-for="Value" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IconName" class="control-label"></label>
+                <input asp-for="IconName" class="form-control" />
+                <span asp-validation-for="IconName" class="text-danger"></span>
+            </div>
+            @*<div class="form-group">
+                <label asp-for="Value2" class="control-label"></label>
+                <input asp-for="Value2" class="form-control" />
+                <span asp-validation-for="Value2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon2" class="control-label"></label>
+                <input asp-for="Icon2" class="form-control" />
+                <span asp-validation-for="Icon2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value3" class="control-label"></label>
+                <input asp-for="Value3" class="form-control" />
+                <span asp-validation-for="Value3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon3" class="control-label"></label>
+                <input asp-for="Icon3" class="form-control" />
+                <span asp-validation-for="Icon3" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value4" class="control-label"></label>
+                <input asp-for="Value4" class="form-control" />
+                <span asp-validation-for="Value4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon4" class="control-label"></label>
+                <input asp-for="Icon4" class="form-control" />
+                <span asp-validation-for="Icon4" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value5" class="control-label"></label>
+                <input asp-for="Value5" class="form-control" />
+                <span asp-validation-for="Value5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon5" class="control-label"></label>
+                <input asp-for="Icon5" class="form-control" />
+                <span asp-validation-for="Icon5" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value6" class="control-label"></label>
+                <input asp-for="Value6" class="form-control" />
+                <span asp-validation-for="Value6" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon6" class="control-label"></label>
+                <input asp-for="Icon6" class="form-control" />
+                <span asp-validation-for="Icon6" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value7" class="control-label"></label>
+                <input asp-for="Value7" class="form-control" />
+                <span asp-validation-for="Value7" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon7" class="control-label"></label>
+                <input asp-for="Icon7" class="form-control" />
+                <span asp-validation-for="Icon7" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value8" class="control-label"></label>
+                <input asp-for="Value8" class="form-control" />
+                <span asp-validation-for="Value8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon8" class="control-label"></label>
+                <input asp-for="Icon8" class="form-control" />
+                <span asp-validation-for="Icon8" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Value9" class="control-label"></label>
+                <input asp-for="Value9" class="form-control" />
+                <span asp-validation-for="Value9" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Icon9" class="control-label"></label>
+                <input asp-for="Icon9" class="form-control" />
+                <span asp-validation-for="Icon9" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

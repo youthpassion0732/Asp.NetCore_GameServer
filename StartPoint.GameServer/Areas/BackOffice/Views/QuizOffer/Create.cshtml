@@ -1,0 +1,47 @@
+﻿@model StartPoint.GameServer.Areas.BackOffice.Models.QuizOfferViewModel
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Create</h1>
+
+<h4>QuizOffer</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <input asp-for="GameId" type="hidden" />
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MinimumScore" class="control-label"></label>
+                <input asp-for="MinimumScore" class="form-control" />
+                <span asp-validation-for="MinimumScore" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VideoFile" class="control-label"></label>
+                <input asp-for="VideoFile" class="form-control" />
+                <span asp-validation-for="VideoFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PhotoFile" class="control-label"></label>
+                <input asp-for="PhotoFile" class="form-control" />
+                <span asp-validation-for="PhotoFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" asp-route-id="@Model.GameId">Back</a>
+</div>
+

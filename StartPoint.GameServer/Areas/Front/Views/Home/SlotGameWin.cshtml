@@ -1,0 +1,19 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.OfferViewModel
+
+@{
+    ViewData["Title"] = "Slot Offer Page";
+}
+
+<div class="text-center">
+    <h1>@Model.Description</h1>
+    <img src="~/Resources/Offer/@Model.Photo1" width="790" height="300" style="padding-bottom: 20px; padding-top: 20px;" />
+
+    @if (!string.IsNullOrEmpty(Model.VideoURL))
+    {
+        <br />
+        <video width="790" height="300" controls>
+            <source src="@Model.VideoURL" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    }
+</div>

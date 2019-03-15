@@ -1,0 +1,138 @@
+﻿@model IEnumerable<DomainEntities.Icon>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Icons</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IconName)
+            </th>
+            @*<th>
+                @Html.DisplayNameFor(model => model.Value2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon3)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon4)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon5)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon6)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon7)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon8)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Value9)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon9)
+            </th>*@
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IconName)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.Value2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon3)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon4)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon5)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon6)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon7)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon8)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Value9)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Icon9)
+            </td>*@
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

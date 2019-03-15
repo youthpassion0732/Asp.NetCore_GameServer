@@ -1,0 +1,140 @@
+﻿@model IEnumerable<DomainEntities.Game>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+@if (ViewBag.AllowCreateGame)
+{
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GameType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GameDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LoginRule)
+            </th>
+            @*<th>
+                        @Html.DisplayNameFor(model => model.LoginWithFacbook)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LoginWithGoogle)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.LoginWithTwitter)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Logo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Banner)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.CSSSkin)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.PrivacyAndGameConditions)
+                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnableAnonymous)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.GameSlotType)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EnableTimer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TimerMaxPerQuestion)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DisplayScore)
+                </th>*@
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GameDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LoginRule)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EnableAnonymous)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.LoginWithFacbook)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoginWithGoogle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.LoginWithTwitter)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Logo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Banner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CSSSkin)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PrivacyAndGameConditions)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.GameSlotType)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EnableTimer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TimerMaxPerQuestion)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DisplayScore)
+                    </td>*@
+                <td>
+                    <a asp-action="Create" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a> |
+                    @if (item.GameType == (int)DomainEntities.Game.GameTypeEnum.Slot)
+                    {
+                        <a asp-action="Create" asp-controller="Icon" asp-route-id="@item.Id">Icons |</a>
+                        <a asp-action="Index" asp-controller="Offer" asp-route-GameId="@item.Id">Offer</a>
+                    }
+                    else
+                    {
+                        <a asp-action="Index" asp-controller="QuizCategory" asp-route-id="@item.Id">Category |</a>
+                        <a asp-action="Index" asp-controller="QuizOffer" asp-route-id="@item.Id"> Offer </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

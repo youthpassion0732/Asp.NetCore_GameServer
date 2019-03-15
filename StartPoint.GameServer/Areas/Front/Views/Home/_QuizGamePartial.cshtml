@@ -1,0 +1,14 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.HomeViewModel
+
+@{
+    ViewData["Title"] = "Quiz Game Page";
+}
+
+<div class="d-flex">
+    @foreach (var category in Model.QuizCategories)
+    {
+        <div class="d-flex flex-column col-lg-3 col-md-4 col-sm-12 col-12">
+            <a asp-controller="Home" asp-action="QuizQuestion" asp-route-category="@category.Id"><img src="~/Resources/Icon/slot1.png" />@category.TitleInEnglish</a>
+        </div>
+    }
+</div>

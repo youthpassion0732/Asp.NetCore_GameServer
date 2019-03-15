@@ -1,0 +1,182 @@
+﻿@model StartPoint.GameServer.Areas.BackOffice.Models.GameViewModel
+
+@{
+    bool required = true;
+    ViewData["Title"] = "Create";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+    if (Model.Id > 0)
+    {
+        required = false;
+    }
+}
+
+<h1>Game Configurations</h1>
+
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="CreateAsync" enctype="multipart/form-data" id="gameConfigForm">
+            <input asp-for="Id" type="hidden" />
+            <div class="d-flex flex-wrap">
+                <div asp-validation-summary="ModelOnly" class="text-danger col-12"></div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="GameType" class="control-label"></label>
+                    <input asp-for="GameType" id="quizzRadio" class="" type="radio" value="@((int)DomainEntities.Game.GameTypeEnum.Quiz)" /> Quizz
+                    <input asp-for="GameType" id="slotRadio" type="radio" value="@((int)DomainEntities.Game.GameTypeEnum.Slot)" /> Slot
+                    <span asp-validation-for="GameType" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="GameName" class="control-label"></label>
+                    <input asp-for="GameName" class="form-control" />
+                    <span asp-validation-for="GameName" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="GameDescription" class="control-label"></label>
+                    <input asp-for="GameDescription" class="form-control" />
+                    <span asp-validation-for="GameDescription" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="LoginRule" class="control-label"></label>
+                    <span asp-validation-for="LoginRule" class="text-danger"></span>
+                    <input asp-for="LoginRule" id="useInternalLogin" type="radio" value="@((int)DomainEntities.Game.LoginRuleTypeEnum.InternalLogin)" /> Use Internal Login
+                    <input asp-for="LoginRule" id="useCustomTemplate" type="radio" value="@((int)DomainEntities.Game.LoginRuleTypeEnum.CustomLogin)" /> Use Custom Template
+                    <input asp-for="LoginRule" id="userSocialMediaLogin" type="radio" value="@((int)DomainEntities.Game.LoginRuleTypeEnum.SocialMediaLogin)" /> User Social Media Login
+                    <div id="socialMediaItems" class="mt-3 col-12">
+                        <div class="row d-flex justify-content-lg-between">
+                            <label class="form-check-label">
+                                <input class="" asp-for="LoginWithFacbook" id="loginWithFacbook" /> @Html.DisplayNameFor(model => model.LoginWithFacbook)
+                            </label>
+
+                            <label class="form-check-label">
+                                <input class="" asp-for="LoginWithGoogle" id="loginWithGoogle" /> @Html.DisplayNameFor(model => model.LoginWithGoogle)
+                            </label>
+
+                            <label class="form-check-label">
+                                <input class="" asp-for="LoginWithTwitter" id="loginWithTwitter" /> @Html.DisplayNameFor(model => model.LoginWithTwitter)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="Logo" class="control-label"></label>
+                    <input asp-for="Logo" class="form-control" type="file" />
+                    <span asp-validation-for="Logo" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="Banner" class="control-label"></label>
+                    <input asp-for="Banner" class="form-control" type="file" />
+                    <span asp-validation-for="Banner" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="CSSSkin" class="control-label"></label>
+                    <input asp-for="CSSSkin" class="form-control" type="file" />
+                    <span asp-validation-for="CSSSkin" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label asp-for="PrivacyAndGameConditions" class="control-label"></label>
+                    <textarea asp-for="PrivacyAndGameConditions" class="form-control"></textarea>
+                    <span asp-validation-for="PrivacyAndGameConditions" class="text-danger"></span>
+                </div>
+                <div class="form-group col-md-6 col-12">
+                    <label class="form-check-label">
+                        <input class="" asp-for="EnableAnonymous" /> @Html.DisplayNameFor(model => model.EnableAnonymous)
+                    </label>
+                </div>
+                <div id="slotType">
+                    <div class="form-group col-md-6 col-12">
+                        <label asp-for="GameSlotType" class="control-label"></label>
+                        <input asp-for="GameSlotType" type="radio" value="@((int)DomainEntities.Game.GameSlotTypeEnum.OncePerDay)" id="onceInADay" /> Once in a day
+                        <input asp-for="GameSlotType" type="radio" value="@((int)DomainEntities.Game.GameSlotTypeEnum.OncePerWeek)" id="onceInAWeek" /> Once in a week
+                        <input asp-for="GameSlotType" type="radio" value="@((int)DomainEntities.Game.GameSlotTypeEnum.OncePerMonth)" id="onceInAMonth" /> Once in a month
+                        <input asp-for="GameSlotType" type="radio" value="@((int)DomainEntities.Game.GameSlotTypeEnum.MultiPerUser)" id="multipleUser" /> Multiple user
+                        <span asp-validation-for="GameSlotType" id="gameSlotType" class="text-danger"></span>
+                    </div>
+                    <div class="form-group col-md-6 col-12" id="slotType">
+                        <label asp-for="GameSlotsCount" class="control-label"></label>
+                        <input asp-for="GameSlotsCount" class="form-control" value="0" />
+                        <span asp-validation-for="GameSlotsCount" class="text-danger"></span>
+                    </div>
+                </div>
+                    <div class="form-group col-md-6 col-12" id="quizzType">
+                        <div class="form-group col-md-6 col-12">
+                            <label class="form-check-label">
+                                <input class="" asp-for="EnableTimer" /> @Html.DisplayNameFor(model => model.EnableTimer)
+                            </label>
+                        </div>
+                        <div class="form-group col-md-6 col-12">
+                            <label asp-for="TimerMaxPerQuestion" class="control-label"></label>
+                            <input asp-for="TimerMaxPerQuestion" class="form-control" value="0" />
+                            <span asp-validation-for="TimerMaxPerQuestion" class="text-danger"></span>
+                        </div>
+                        <div class="form-group col-md-6 col-12">
+                            <label class="form-check-label">
+                                <input class="" asp-for="DisplayScore" /> @Html.DisplayNameFor(model => model.DisplayScore)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-6 col-12">
+                        @if (required)
+                        {
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        }
+                        else
+                        {
+                            <input type="submit" value="Create" formnovalidate="formnovalidate" class="btn btn-primary" />
+                        }
+                    </div>
+                </div>
+</form>
+
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Games</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    $(document).ready(function () {
+        showHideControls();
+
+        $('#quizzRadio, #slotRadio').click(function () {
+
+            showHideControls();
+        });
+
+        $('#useCustomTemplate, #useInternalLogin, #userSocialMediaLogin').click(function () {
+
+            showHideControls();
+        });
+
+        function showHideControls() {
+            if ($('#quizzRadio').is(':checked')) {
+                $('#quizzType').show();
+                $('#slotType').hide();
+                //$('#onceInADay').prop('checked', false);
+            }
+            else if ($('#slotRadio').is(':checked')) {
+                $('#quizzType').hide();
+                $('#slotType').show();
+                //$('#onceInADay').prop('checked', true);
+            }
+            else {
+                $('#quizzType').hide();
+                $('#slotType').hide();
+            }
+
+            if ($('#userSocialMediaLogin').is(':checked')) {
+                $('#socialMediaItems').show();
+                //$('#loginWithFacbook').prop('checked', true);
+            }
+            else {
+                $('#socialMediaItems').hide();
+                //$('#loginWithFacbook').prop('checked', false);
+            }
+
+        }
+
+    });
+</script>

@@ -1,0 +1,133 @@
+﻿@model StartPoint.GameServer.Areas.Front.Models.HomeViewModel
+@using DomainEntities
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome To Front</h1>
+</div>
+
+@if (Model.GameModel.GameType == (int)Game.GameTypeEnum.Slot)
+{
+    <partial name="_SlotGamePartial" model="@Model" />
+}
+else
+{
+    <partial name="_QuizGamePartial" model="@Model" />
+}
+
+@section Scripts
+    {
+    <script src="~/lib/jQuery-slot-machine/dist/slotmachine.js"></script>
+    <script src="~/lib/jQuery-slot-machine/dist/jquery.slotmachine.js"></script>
+    <script>
+        let machinesCount = Number($("#slotMachinesCount").val());
+        var btnShuffle = document.querySelector('#casinoShuffle');
+        var btnStop = document.querySelector('#casinoStop');
+        var casino1 = document.querySelector('#casino1');
+        var casino2 = document.querySelector('#casino2');
+        var casino3 = document.querySelector('#casino3');
+
+        var casino4;
+        if (machinesCount == 4) {
+            casino4 = document.querySelector('#casino4');
+        }
+
+        var mCasino1 = new SlotMachine(casino1, {
+            active: 0,
+            delay: 500
+        });
+        var mCasino2 = new SlotMachine(casino2, {
+            active: 1,
+            delay: 500
+        });
+        var mCasino3 = new SlotMachine(casino3, {
+            active: 2,
+            delay: 500
+        });
+
+        var mCasino4;
+        if (machinesCount == 4) {
+            var mCasino4 = new SlotMachine(casino4, {
+                active: 3,
+                delay: 500
+            });
+        }
+
+        let count = 0;
+        let slotCombinations = "";
+        btnShuffle.addEventListener('click', () => {
+            // set counter to stop machines
+            count = machinesCount;
+            slotCombinations = "";
+
+            // shuffle slot machines
+            mCasino1.shuffle(9999);
+            mCasino2.shuffle(9999);
+            mCasino3.shuffle(9999);
+            if (machinesCount == 4) {
+                mCasino4.shuffle(9999);
+            }
+        });
+
+        btnStop.addEventListener('click', () => {
+            if (machinesCount == 4) {
+                switch (count) {
+                    case 4:
+                        stopMachine(mCasino1);
+                        break;
+                    case 3:
+                        stopMachine(mCasino2);
+                        break;
+                    case 2:
+                        stopMachine(mCasino3);
+                        break;
+                    case 1:
+                        stopMachine(mCasino4);
+                        submitSlotCombinations();
+                        break;
+                }
+            }
+            else {
+                switch (count) {
+                    case 3:
+                        stopMachine(mCasino1);
+                        break;
+                    case 2:
+                        stopMachine(mCasino2);
+                        break;
+                    case 1:
+                        stopMachine(mCasino3);
+                        submitSlotCombinations();
+                        break;
+                }
+            }
+            count--;
+        });
+
+        function stopMachine(activeCasino) {
+            activeCasino.stop();
+            console.log("active casino:", activeCasino);
+
+            var activeMachineIconIndex = activeCasino.active;
+            console.log("active casino icon index:", activeMachineIconIndex);
+
+            var activeMachineIconImage = activeCasino.tiles[activeMachineIconIndex].innerHTML;
+            console.log("active casino icon image:", activeMachineIconImage);
+
+            var activeMachineIconId = $(activeMachineIconImage).prop("id");
+            console.log("active casino icon id:", activeMachineIconId);
+
+            slotCombinations += activeMachineIconId;
+            console.log("slotCombinations:", slotCombinations);
+        }
+
+        function submitSlotCombinations() {
+            $("#slotMachineOptions").val(slotCombinations);
+            console.log("slotMachineOptions:", $("#slotMachineOptions").val());
+            $("#slotMachineForm").submit();
+        }
+    </script>
+}

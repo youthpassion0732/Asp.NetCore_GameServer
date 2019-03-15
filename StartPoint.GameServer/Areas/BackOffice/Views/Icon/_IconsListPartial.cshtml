@@ -1,0 +1,36 @@
+﻿@model StartPoint.GameServer.Areas.BackOffice.Models.IconViewModel
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Value)
+            </th>
+            <th>
+                <label asp-for="IconFile.FileName" class="control-label"></label>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Icons != null)
+        {
+            @foreach (var item in Model.Icons)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(Item => item.Value)
+                    </td>
+                    <td>
+                        <img style="height: 40px;" src="~/Resources/Icon/@item.Id/@item.IconName" alt="@item.IconName">
+                    </td>
+                    <td>
+                        @*<a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |*@
+                        <a href="~/BackOffice/Icon/Delete?id=@item.Id&GameId=@Model.GameId">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

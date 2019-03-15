@@ -1,0 +1,4 @@
+*.orig
+*.js.map
+**/bin
+**/obj

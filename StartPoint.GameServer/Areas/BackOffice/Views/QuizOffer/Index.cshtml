@@ -1,0 +1,61 @@
+﻿@model DomainEntities.QuizOffer
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/BackOffice/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Quiz Offer</h1>
+@if (Model != null && Model.Id == 0)
+{
+    <p>
+        <a asp-action="Create" asp-route-id="@Model.GameId">Create New</a>
+    </p>
+}
+@if (Model != null && Model.Id > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Description)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MinimumScore)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.VideoName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhotoName)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.MinimumScore)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.VideoName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => Model.PhotoName)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@Model.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+}
+
+<div>
+    <a asp-action="Index" asp-controller="Game">Back to Game</a>
+</div>
